@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir Imagen</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Fuente vistosa desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body class="bg-dark text-white d-flex align-items-center min-vh-100">
+    <div class="container d-flex justify-content-center">
+        <div class="col-lg-6 col-md-8 col-12">
+            <!-- Aplica la nueva fuente vistosa al h2 -->
+            <h2 class="text-center mb-4" style="font-family: 'Pacifico', cursive;">DETECCIÓN DE PUNTOS FACIALES</h2>
+            <form action="/" method="POST" enctype="multipart/form-data" class="text-center">
+                <div class="form-group">
+                    <label for="file">Selecciona una imagen</label>
+                    <input type="file" name="file" id="file" class="form-control-file" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Subir Imagen</button>
+            </form>
+            
+            <div class="mt-5 text-center">
+                <h5>Ejemplo del resultado esperado</h5>
+                <img src="{{ url_for('static', filename='Ejemplo.png') }}" alt="Ejemplo del resultado" class="img-fluid rounded shadow">
+                <!-- Cambia el color del texto a blanco -->
+                <p class="text-white">Por: Hector Daniel Marmolejo Garcia.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+credenciales.json
+# Ignorar carpetas
+ALGORITMOS/
+APIS/
+AUTODOC/
+BUSQUEDA/
+# Facial_Points/ - NO incluir esta línea si quieres subirlo
+Flask/
+KeyFacials/
+Operaciones_Matriciales/
+Ruta_Optima/
+flask_image_upload/
+bin/
+lib/
+lib64/
+
+# Ignorar archivos específicos
+Ruta_Optima.zip
+notas.txt
+pyvenv.cfg
