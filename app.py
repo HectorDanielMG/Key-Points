@@ -15,7 +15,7 @@ ADJUSTMENTS = {
     1: {'x': -2, 'y': 2},  # Extremo derecho ceja izquierda
     2: {'x': -3, 'y': 3},   # Extremo izquierdo ceja izquierda
     3: {'x': 0, 'y': 2},  # Extremo derecho ceja derecha
-    4: {'x': -24, 'y': -2}, # Extremo izquierdo ceja derecha
+    4: {'x': -24, 'y': -3}, # Extremo izquierdo ceja derecha
     5: {'x': -2, 'y': 2},  # Centro del ojo izquierdo
     6: {'x': -7, 'y': 1},  # Lado izquierdo ojo izquierdo
     7: {'x': 9, 'y': 0},   # Lado derecho ojo izquierdo
