@@ -5,13 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resultado</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Fuente vistosa desde Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        .image-container {
+            position: relative;
+            width: 100%;
+            max-width: 420px; /* Más grande que output.png */
+        }
+        .background-image {
+            width: 100%;
+            height: auto;
+        }
+        .overlay-image {
+            position: absolute;
+            top: 11px; /* Ajuste de posición */
+            left: 33px;
+            width: 90%; /* Más pequeña que graf.jpeg */
+            height: auto;
+        }
+    </style>
 </head>
 <body class="bg-dark text-white d-flex align-items-center min-vh-100">
     <div class="container d-flex flex-column align-items-center">
-        <h1 class="mt-5" style="font-family: 'Pacifico', cursive;">Imagen procesada con Exitoso!!</h1>
-        <img src="{{ url_for('static', filename='output.png') }}" alt="Processed Image" class="img-fluid rounded shadow">
+        <h1 class="mt-5" style="font-family: 'Pacifico', cursive;">Imagen procesada con éxito!</h1>
+        <div class="image-container mt-3">
+            <img src="{{ url_for('static', filename='graf.jpeg') }}" alt="Background Image" class="background-image">
+            <img src="{{ url_for('static', filename='output.png') }}" alt="Processed Overlay Image" class="overlay-image">
+        </div>
         <a href="/" class="btn btn-primary mt-3">Subir otra imagen</a>
     </div>
 </body>

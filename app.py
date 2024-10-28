@@ -13,20 +13,20 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'credenciales.json'
 # Configuración para modificar las coordenadas de los puntos usando números
 ADJUSTMENTS = {
     1: {'x': -2, 'y': 2},  # Extremo derecho ceja izquierda
-    2: {'x': -3, 'y': 3},   # Extremo izquierdo ceja izquierda
-    3: {'x': 0, 'y': 2},  # Extremo derecho ceja derecha
+    2: {'x': -2, 'y': 2},   # Extremo izquierdo ceja izquierda
+    3: {'x': 2, 'y': 1},  # Extremo derecho ceja derecha
     4: {'x': -24, 'y': -3}, # Extremo izquierdo ceja derecha
-    5: {'x': -2, 'y': 2},  # Centro del ojo izquierdo
-    6: {'x': -7, 'y': 1},  # Lado izquierdo ojo izquierdo
-    7: {'x': 9, 'y': 0},   # Lado derecho ojo izquierdo
-    8: {'x': -3, 'y': 2},   # Centro del ojo derecho
-    9: {'x': -8, 'y': 1},  # Lado izquierdo ojo derecho
+    5: {'x': 0, 'y': 1},  # Centro del ojo izquierdo
+    6: {'x': -6, 'y': 1},  # Lado izquierdo ojo izquierdo
+    7: {'x': 7, 'y': 0},   # Lado derecho ojo izquierdo
+    8: {'x': 0, 'y': 1},   # Centro del ojo derecho
+    9: {'x': -6, 'y': 1},  # Lado izquierdo ojo derecho
     10: {'x': 7, 'y': 1},  # Lado derecho ojo derecho
-    11: {'x': -3, 'y': 2},  # Punta de la nariz
-    12: {'x': -2, 'y': 2},  # Labio superior izquierdo
-    13: {'x': -3, 'y': 2},  # Labio superior derecho
-    14: {'x': -3, 'y': 2},  # Labio inferior izquierdo
-    15: {'x': -4, 'y': 2}   # Labio inferior derecho
+    11: {'x': -1, 'y': 1},  # Punta de la nariz
+    12: {'x': 0, 'y': 2},  # Labio superior izquierdo
+    13: {'x': 0, 'y': 1},  # Labio superior derecho
+    14: {'x': -1, 'y': 1},  # Labio inferior izquierdo
+    15: {'x': -2, 'y': 2}   # Labio inferior derecho
 }
 
 def detect_face_landmarks(image_path):
@@ -96,7 +96,7 @@ def process_image(image_path):
         for landmark in desired_landmarks:
             x = int(landmark.x)
             y = int(landmark.y)
-            cv2.putText(gray_img_colored, 'x', (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.3, (0, 0, 255), 1, cv2.LINE_AA)
+            cv2.putText(gray_img_colored, 'x', (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.1, (0, 0, 255), 1, cv2.LINE_AA)
 
     output_img = cv2.resize(gray_img_colored, (400, 400))
     cv2.imwrite('static/output.png', output_img)
