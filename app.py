@@ -23,10 +23,10 @@ ADJUSTMENTS = {
     9: {'x': -8, 'y': 1},  # Lado izquierdo ojo derecho
     10: {'x': 7, 'y': 1},  # Lado derecho ojo derecho
     11: {'x': -1, 'y': 1},  # Punta de la nariz
-    12: {'x': 0, 'y': 0},  # Labio superior izquierdo
-    13: {'x': 0, 'y': 1},  # Labio superior derecho
+    12: {'x': 0, 'y': 1},  # Labio superior izquierdo
+    13: {'x': -0, 'y': 1},  # Labio superior derecho
     14: {'x': -1, 'y': 1},  # Labio inferior izquierdo
-    15: {'x': -2, 'y': 2}   # Labio inferior derecho
+    15: {'x': -2, 'y': 0}   # Labio inferior derecho
 }
 
 def detect_face_landmarks(image_path):
