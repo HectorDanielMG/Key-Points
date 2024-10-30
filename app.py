@@ -96,7 +96,7 @@ def process_image(image_path):
         for landmark in desired_landmarks:
             x = int(landmark.x)
             y = int(landmark.y)
-            cv2.putText(gray_img_colored, 'x', (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.1, (0, 0, 255), 1, cv2.LINE_AA)
+            cv2.putText(gray_img_colored, 'x', (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.2, (0, 0, 255), 1, cv2.LINE_AA)
 
     output_img = cv2.resize(gray_img_colored, (400, 400))
     cv2.imwrite('static/output.png', output_img)
