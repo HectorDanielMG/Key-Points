@@ -10,23 +10,22 @@ app = Flask(__name__)
 # Configura la ruta a tus credenciales de Google Cloud
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'credenciales.json'
 
-# Configuración para modificar las coordenadas de los puntos usando números
 ADJUSTMENTS = {
-    1: {'x': -2, 'y': 2},  # Extremo derecho ceja izquierda
+    1: {'x': -2, 'y': 5},  # Extremo derecho ceja izquierda
     2: {'x': -2, 'y': 2},   # Extremo izquierdo ceja izquierda
-    3: {'x': 2, 'y': 1},  # Extremo derecho ceja derecha
+    3: {'x': 4, 'y': 0},  # Extremo derecho ceja derecha
     4: {'x': -24, 'y': -3}, # Extremo izquierdo ceja derecha
-    5: {'x': 0, 'y': 1},  # Centro del ojo izquierdo
-    6: {'x': -6, 'y': 1},  # Lado izquierdo ojo izquierdo
+    5: {'x': 2, 'y': 1},  # Centro del ojo izquierdo
+    6: {'x': -7, 'y': 0},  # Lado izquierdo ojo izquierdo
     7: {'x': 6, 'y': 1},   # Lado derecho ojo izquierdo
-    8: {'x': 0, 'y': 1},   # Centro del ojo derecho
-    9: {'x': -6, 'y': 1},  # Lado izquierdo ojo derecho
+    8: {'x': -4, 'y': 1},   # Centro del ojo derecho
+    9: {'x': -6, 'y': 0},  # Lado izquierdo ojo derecho
     10: {'x': 5, 'y': 1},  # Lado derecho ojo derecho
-    11: {'x': -1, 'y': 1},  # Punta de la nariz
+    11: {'x': -3, 'y': 1},  # Punta de la nariz
     12: {'x': -1, 'y': 2},  # Labio superior izquierdo
-    13: {'x': -1, 'y': 1},  # Labio superior derecho
-    14: {'x': -1, 'y': 1},  # Labio inferior izquierdo
-    15: {'x': -2, 'y': 2}   # Labio inferior derecho
+    13: {'x': -4, 'y': 1},  # Labio superior derecho
+    14: {'x': -5, 'y': 1},  # Labio inferior izquierdo
+    15: {'x': -3, 'y': 2}   # Labio inferior derecho
 }
 
 def detect_face_landmarks(image_path):
@@ -56,7 +55,7 @@ def resize_image(image_path, output_size):
 def process_image(image_path):
     img = cv2.imread(image_path)
     original_height, original_width = img.shape[:2]
-    
+
     if original_width != 96 or original_height != 96:
         img = resize_image(image_path, (96, 96))
 
@@ -96,10 +95,12 @@ def process_image(image_path):
         for landmark in desired_landmarks:
             x = int(landmark.x)
             y = int(landmark.y)
-            cv2.putText(gray_img_colored, 'x', (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.2, (0, 0, 255), 1, cv2.LINE_AA)
+            cv2.putText(gray_img_colored, 'x', (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.1, (0, 0, 255), 1, cv2.LINE_AA)
 
+    # Guardar la imagen procesada en una ruta absoluta
+    output_image_path = 'static/output.png'
     output_img = cv2.resize(gray_img_colored, (400, 400))
-    cv2.imwrite('static/output.png', output_img)
+    cv2.imwrite(output_image_path, output_img)
     os.remove(image_path)  # Elimina la imagen original
 
 @app.route('/')
@@ -110,6 +111,7 @@ def upload_form():
 def upload():
     file = request.files['file']
     if file:
+        # Usar una ruta absoluta para la imagen guardada
         image_path = 'static/' + file.filename
         file.save(image_path)
         process_image(image_path)
