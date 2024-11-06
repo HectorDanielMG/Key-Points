@@ -11,21 +11,21 @@ app = Flask(__name__)
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'credenciales.json'
 
 ADJUSTMENTS = {
-    1: {'x': -2, 'y': 5},  # Extremo derecho ceja izquierda
+    1: {'x': -5, 'y': 5},  # Extremo derecho ceja izquierda
     2: {'x': -2, 'y': 2},   # Extremo izquierdo ceja izquierda
     3: {'x': 4, 'y': 0},  # Extremo derecho ceja derecha
-    4: {'x': -24, 'y': -3}, # Extremo izquierdo ceja derecha
+    4: {'x': -27, 'y': -3}, # Extremo izquierdo ceja derecha
     5: {'x': 2, 'y': 1},  # Centro del ojo izquierdo
     6: {'x': -7, 'y': 0},  # Lado izquierdo ojo izquierdo
     7: {'x': 6, 'y': 1},   # Lado derecho ojo izquierdo
-    8: {'x': -5, 'y': 1},   # Centro del ojo derecho
+    8: {'x': -3, 'y': 1},   # Centro del ojo derecho
     9: {'x': -6, 'y': 0},  # Lado izquierdo ojo derecho
-    10: {'x': 5, 'y': 1},  # Lado derecho ojo derecho
+    10: {'x': 5, 'y': 3},  # Lado derecho ojo derecho
     11: {'x': -4, 'y': 2},  # Punta de la nariz
     12: {'x': -4, 'y': 2},  # Labio superior izquierdo
-    13: {'x': -4, 'y': 1},  # Labio superior derecho
-    14: {'x': -3, 'y': 2},  # Labio inferior izquierdo
-    15: {'x': -3, 'y': 2}   # Labio inferior derecho
+    13: {'x': -3, 'y': 1},  # Labio superior derecho
+    14: {'x': -2, 'y': 2},  # Labio inferior izquierdo
+    15: {'x': -2, 'y': 2}   # Labio inferior derecho
 }
 
 def detect_face_landmarks(image_path):
