@@ -17,14 +17,14 @@ ADJUSTMENTS = {
     4: {'x': -27, 'y': -3}, # Extremo izquierdo ceja derecha
     5: {'x': 2, 'y': 2},  # Centro del ojo izquierdo
     6: {'x': -6, 'y': 0},  # Lado izquierdo ojo izquierdo
-    7: {'x': 8, 'y': 2},   # Lado derecho ojo izquierdo
+    7: {'x': 3, 'y': 2},   # Lado derecho ojo izquierdo
     8: {'x': -3, 'y': 1},   # Centro del ojo derecho
     9: {'x': -4, 'y': 0},  # Lado izquierdo ojo derecho
-    10: {'x': 6, 'y': 4},  # Lado derecho ojo derecho
-    11: {'x': -3, 'y': 1},  # Punta de la nariz
+    10: {'x': 3, 'y': 4},  # Lado derecho ojo derecho
+    11: {'x': -3, 'y': 2},  # Punta de la nariz
     12: {'x': -4, 'y': 4},  # Labio superior izquierdo
-    13: {'x': -2, 'y': 1},  # Labio superior derecho
-    14: {'x': -2, 'y': 3},  # Labio inferior izquierdo
+    13: {'x': -1, 'y': 2},  # Labio superior derecho
+    14: {'x': -1, 'y': 3},  # Labio inferior izquierdo
     15: {'x': -4, 'y': 2}   # Labio inferior derecho
 }
 
