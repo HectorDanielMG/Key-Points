@@ -11,10 +11,10 @@ app = Flask(__name__)
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'credenciales.json'
 
 ADJUSTMENTS = {
-    1: {'x': -4, 'y': 4},  # Extremo derecho ceja izquierda
-    2: {'x': -3, 'y': 2},   # Extremo izquierdo ceja izquierda
-    3: {'x': 4, 'y': 0},  # Extremo derecho ceja derecha
-    4: {'x': -29, 'y': -2}, # Extremo izquierdo ceja derecha
+    1: {'x': -1, 'y': 4},  # Extremo derecho ceja izquierda
+    2: {'x': -2, 'y': 2},   # Extremo izquierdo ceja izquierda
+    3: {'x': 5, 'y': 0},  # Extremo derecho ceja derecha
+    4: {'x': -22, 'y': -2}, # Extremo izquierdo ceja derecha
     5: {'x': 2, 'y': 1},  # Centro del ojo izquierdo
     6: {'x': -5, 'y': 0},  # Lado izquierdo ojo izquierdo
     7: {'x': 4, 'y': 3},   # Lado derecho ojo izquierdo
@@ -23,8 +23,8 @@ ADJUSTMENTS = {
     10: {'x': 1, 'y': 2},  # Lado derecho ojo derecho
     11: {'x': -1, 'y': 2},  # Punta de la nariz
     12: {'x': -2, 'y': 2},  # Labio superior izquierdo
-    13: {'x': -2, 'y': 1},  # Labio superior derecho
-    14: {'x': -2, 'y': 2},  # Labio inferior izquierdo
+    13: {'x': -3, 'y': 1},  # Labio superior derecho
+    14: {'x': -4, 'y': 1},  # Labio inferior izquierdo
     15: {'x': -3, 'y': 1}   # Labio inferior derecho
 }
 
