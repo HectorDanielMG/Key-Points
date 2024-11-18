@@ -11,10 +11,10 @@ app = Flask(__name__)
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'credenciales.json'
 
 ADJUSTMENTS = {
-    1: {'x': -3, 'y': 1},  # Extremo derecho ceja izquierda
-    2: {'x': -2, 'y': 0},   # Extremo izquierdo ceja izquierda
-    3: {'x': 5, 'y': 0},  # Extremo derecho ceja derecha
-    4: {'x': -26, 'y': 0}, # Extremo izquierdo ceja derecha
+    1: {'x': -6, 'y': 1},  # Extremo derecho ceja izquierda
+    2: {'x': -1, 'y': 0},   # Extremo izquierdo ceja izquierda
+    3: {'x': 4, 'y': 0},  # Extremo derecho ceja derecha
+    4: {'x': -25, 'y': 0}, # Extremo izquierdo ceja derecha
     5: {'x': 2, 'y': 1},  # Centro del ojo izquierdo
     6: {'x': -3, 'y': 2},  # Lado izquierdo ojo izquierdo
     7: {'x': 4, 'y': 2},   # Lado derecho ojo izquierdo
