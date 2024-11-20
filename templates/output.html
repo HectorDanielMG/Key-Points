@@ -3,36 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resultado</title>
+    <title>Imágenes Procesadas</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
+        body {
+            background-color: #343a40;
+            color: white;
+        }
+        h1 {
+            font-family: 'Pacifico', cursive;
+            color: #17a2b8;
+        }
+        h5 {
+            color: #17a2b8;
+        }
+        .btn-primary {
+            background-color: #28a745;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #218838;
+        }
         .image-container {
-            position: relative;
-            width: 100%;
-            max-width: 420px; /* Más grande que output.png */
+            margin: 20px 0;
         }
-        .background-image {
+        .large-image {
             width: 100%;
+            max-width: 800px;
             height: auto;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
         }
-        .overlay-image {
-            position: absolute;
-            top: 11px; /* Ajuste de posición */
-            left: 33px;
-            width: 90%; /* Más pequeña que graf.jpeg */
-            height: auto;
+
+        /* Estilos para la animación de carga */
+        #loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .loader {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #17a2b8;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
-<body class="bg-dark text-white d-flex align-items-center min-vh-100">
-    <div class="container d-flex flex-column align-items-center">
-        <h1 class="mt-5" style="font-family: 'Pacifico', cursive;">Imagen procesada con éxito!</h1>
-        <div class="image-container mt-3">
-            <img src="{{ url_for('static', filename='graf.jpeg') }}" alt="Background Image" class="background-image">
-            <img src="{{ url_for('static', filename='output.png') }}" alt="Processed Overlay Image" class="overlay-image">
-        </div>
-        <a href="/" class="btn btn-primary mt-3">Subir otra imagen</a>
+<body class="d-flex flex-column align-items-center">
+    <!-- Animación de carga -->
+    <div id="loading">
+        <div class="loader"></div>
     </div>
+
+    <div class="container text-center" style="display: none;" id="content">
+        <h1 class="mt-4">Resultados del Procesamiento</h1>
+        <div class="row mt-4">
+            <div class="col-md-6 image-container">
+                <h5>Imagen Original Procesada</h5>
+                <img src="{{ images['processed'] }}" alt="Imagen Procesada" class="img-fluid rounded large-image">
+            </div>
+            <div class="col-md-6 image-container">
+                <h5>Imagen en Modo Espejo</h5>
+                <img src="{{ images['flipped'] }}" alt="Imagen Espejo" class="img-fluid rounded large-image">
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-6 image-container">
+                <h5>Imagen de Cabeza</h5>
+                <img src="{{ images['upside_down'] }}" alt="Imagen de Cabeza" class="img-fluid rounded large-image">
+            </div>
+            <div class="col-md-6 image-container">
+                <h5>Imagen con Brillo Aumentado</h5>
+                <img src="{{ images['bright'] }}" alt="Imagen Brillo Aumentado" class="img-fluid rounded large-image">
+            </div>
+        </div>
+        <div class="mt-4">
+            <a href="/" class="btn btn-primary">Subir Otra Imagen</a>
+        </div>
+    </div>
+
+    <script>
+        // Esperar 5 segundos antes de ocultar la animación de carga y mostrar las imágenes
+        setTimeout(function() {
+            document.getElementById("loading").style.display = "none";  // Ocultar la animación
+            document.getElementById("content").style.display = "block"; // Mostrar el contenido con las imágenes
+        }, 4000);  // 5000 milisegundos = 5 segundos
+    </script>
 </body>
 </html>

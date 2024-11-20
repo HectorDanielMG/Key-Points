@@ -10,22 +10,23 @@ app = Flask(__name__)
 # Configura la ruta a tus credenciales de Google Cloud
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'credenciales.json'
 
+# Ajustes de puntos faciales
 ADJUSTMENTS = {
-    1: {'x': -3, 'y': 1},  # Extremo derecho ceja izquierda
-    2: {'x': -1, 'y': 0},   # Extremo izquierdo ceja izquierda
-    3: {'x': 4, 'y': 0},  # Extremo derecho ceja derecha
-    4: {'x': -22, 'y': 2}, # Extremo izquierdo ceja derecha
-    5: {'x': 2, 'y': 1},  # Centro del ojo izquierdo
-    6: {'x': -3, 'y': 2},  # Lado izquierdo ojo izquierdo
-    7: {'x': 2, 'y': 2},   # Lado derecho ojo izquierdo
-    8: {'x': -1, 'y': 4},   # Centro del ojo derecho
-    9: {'x': -1, 'y': 0},  # Lado izquierdo ojo derecho
-    10: {'x': 1, 'y': 6},  # Lado derecho ojo derecho
-    11: {'x': 1, 'y': 1},  # Punta de la nariz
-    12: {'x': -1, 'y': 1},  # Labio superior izquierdo
-    13: {'x': 2, 'y': 2},  # Labio superior derecho
-    14: {'x': 3, 'y': 3},  # Labio inferior izquierdo
-    15: {'x': -1, 'y': 1}   # Labio inferior derecho
+    1: {'x': -2, 'y': 2},  # Extremo derecho ceja izquierda
+    2: {'x': -2, 'y': 2},  # Extremo izquierdo ceja izquierda
+    3: {'x': 4, 'y': 0},   # Extremo derecho ceja derecha
+    4: {'x': -24, 'y': -3},# Extremo izquierdo ceja derecha
+    5: {'x': 2, 'y': 1},   # Centro del ojo izquierdo
+    6: {'x': -7, 'y': 0},  # Lado izquierdo ojo izquierdo
+    7: {'x': 6, 'y': 1},   # Lado derecho ojo izquierdo
+    8: {'x': -4, 'y': 1},  # Centro del ojo derecho
+    9: {'x': -6, 'y': 0},  # Lado izquierdo ojo derecho
+    10: {'x': 4, 'y': 0},  # Lado derecho ojo derecho
+    11: {'x': -1, 'y': 2}, # Punta de la nariz
+    12: {'x': -2, 'y': 2}, # Labio superior izquierdo
+    13: {'x': -3, 'y': 1}, # Labio superior derecho
+    14: {'x': -1, 'y': 1}, # Labio inferior izquierdo
+    15: {'x': -2, 'y': 2}  # Labio inferior derecho
 }
 
 def detect_face_landmarks(image_path):
@@ -97,11 +98,35 @@ def process_image(image_path):
             y = int(landmark.y)
             cv2.putText(gray_img_colored, 'x', (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.1, (0, 0, 255), 1, cv2.LINE_AA)
 
-    # Guardar la imagen procesada en una ruta absoluta
-    output_image_path = 'static/output.png'
-    output_img = cv2.resize(gray_img_colored, (400, 400))
-    cv2.imwrite(output_image_path, output_img)
+    output_dir = 'static/'
+    base_name = os.path.splitext(os.path.basename(image_path))[0]
+
+    # Guardar la imagen original procesada
+    processed_path = os.path.join(output_dir, f"{base_name}_processed.png")
+    cv2.imwrite(processed_path, gray_img_colored)
+
+    # Crear y guardar imagen en modo espejo
+    flipped_image = cv2.flip(gray_img_colored, 1)
+    flipped_path = os.path.join(output_dir, f"{base_name}_flipped.png")
+    cv2.imwrite(flipped_path, flipped_image)
+
+    # Crear y guardar imagen de cabeza
+    upside_down_image = cv2.flip(gray_img_colored, 0)
+    upside_down_path = os.path.join(output_dir, f"{base_name}_upside_down.png")
+    cv2.imwrite(upside_down_path, upside_down_image)
+
+    # Crear y guardar imagen con brillo aumentado
+    bright_image = cv2.convertScaleAbs(gray_img_colored, alpha=1.2, beta=50)
+    bright_path = os.path.join(output_dir, f"{base_name}_bright.png")
+    cv2.imwrite(bright_path, bright_image)
+
     os.remove(image_path)  # Elimina la imagen original
+    return {
+        "processed": processed_path,
+        "flipped": flipped_path,
+        "upside_down": upside_down_path,
+        "bright": bright_path,
+    }
 
 @app.route('/')
 def upload_form():
@@ -111,11 +136,10 @@ def upload_form():
 def upload():
     file = request.files['file']
     if file:
-        # Usar una ruta absoluta para la imagen guardada
         image_path = 'static/' + file.filename
         file.save(image_path)
-        process_image(image_path)
-        return render_template('output.html')
+        images = process_image(image_path)
+        return render_template('output.html', images=images)
 
 if __name__ == '__main__':
     app.run(debug=True)
