@@ -13,9 +13,9 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'credenciales.json'
 # Ajustes de puntos faciales
 ADJUSTMENTS = {
     1: {'x': -0, 'y': 3},  # Extremo derecho ceja izquierda
-    2: {'x': -2, 'y': 2},  # Extremo izquierdo ceja izquierda
+    2: {'x': -1, 'y': 2},  # Extremo izquierdo ceja izquierda
     3: {'x': 4, 'y': 0},   # Extremo derecho ceja derecha
-    4: {'x': -26, 'y': -2},# Extremo izquierdo ceja derecha
+    4: {'x': -25, 'y': -2},# Extremo izquierdo ceja derecha
     5: {'x': 0, 'y': 1},   # Centro del ojo izquierdo
     6: {'x': -7, 'y': 0},  # Lado izquierdo ojo izquierdo
     7: {'x': 5, 'y': 1},   # Lado derecho ojo izquierdo
@@ -23,9 +23,9 @@ ADJUSTMENTS = {
     9: {'x': -6, 'y': 1},  # Lado izquierdo ojo derecho
     10: {'x': 3, 'y': 0},  # Lado derecho ojo derecho
     11: {'x': -0, 'y': 2}, # Punta de la nariz
-    12: {'x': -3, 'y': 2}, # Labio superior izquierdo
+    12: {'x': -1, 'y': 1}, # Labio superior izquierdo
     13: {'x': -2, 'y': 1}, # Labio superior derecho
-    14: {'x': -3, 'y': 3}, # Labio inferior izquierdo
+    14: {'x': -1, 'y': 1}, # Labio inferior izquierdo
     15: {'x': -0, 'y': 1}  # Labio inferior derecho
 }
 
